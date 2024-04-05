@@ -11,7 +11,7 @@ class chitietsanpham_Model extends Model {
    
     public function getLuusanpham($Hinh,$masp,$tenSP,$amount,$gia){
         $query = "insert into ql_banhang.GIOHANG(Hinh,maSP,tenSP,soluong,gia) 
-        values ('".$Hinh."','".$masp."',N'".$tenSP."','".$amount."','".$gia."')";
+        values ('".$Hinh."','".$masp."',N'".$tenSP."',".$amount.",".$gia.")";
         return $this->qInsert($query);
     }
     //cách kiểm tra lỗi
