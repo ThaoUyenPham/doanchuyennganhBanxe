@@ -52,9 +52,9 @@
                                 <table>                                  
                                     <tr>
                                         <th id="masp">Mã sản phẩm</th>
-                                        <th>Hình ảnh</th>
+                                        <th id="hinh">Hình ảnh</th>
                                         <th id="tensp">Tên sản phẩm</th>
-                                        <th>Giá</th>
+                                        <th id="gia">Giá</th>
                                         <th>Hành động</th>                      
                                     </tr>  
                                     <?php if(count($products)>0){ 
