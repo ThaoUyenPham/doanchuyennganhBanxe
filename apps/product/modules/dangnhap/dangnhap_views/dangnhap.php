@@ -29,13 +29,13 @@
         <from class = "form-login" method="post">
             <h1>Đăng nhập</h1>
             <div class="form-text">
-                <input type="text" name="username" id="user" value="thinh13@gmail.com">
+                <input type="text" name="username" id="user" value="thaouyenpham0103@gmail.com">
                <label for="myInput">Username</label>
               
             </div>
 
             <div class="form-text">
-                <input type="Password" id="passInput" value="Thinh@123">
+                <input type="Password" id="passInput" value="Uyenpmtt@1303">
                 <label for="pasInput">Password</label>
             </div>
 
@@ -72,14 +72,14 @@ $('#login').click(function(){ //khi nhấn vào giỏ hàng
 
                 },  // data to submit          
                 success: function (data, status, xhr) {
-                   if(data==1){
+                   //if(data==1){
                     window.open("<?php echo SITE_ROOT ?>product/dathang","_self");
-                    alert("Xin chào '"+username+"' Bạn đăng nhập thành công");
+                    //alert("Xin chào '"+username+"' Bạn đăng nhập thành công");
                     
-                    }
-                   else{
-                    alert("Tài khoản hoặc mật khẩu không đúng");
-                   }  
+                    //}
+                   //else{
+                   // alert("Tài khoản hoặc mật khẩu không đúng");
+                   //}  
                 }
             });
         }     

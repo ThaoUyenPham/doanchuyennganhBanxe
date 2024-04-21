@@ -35,7 +35,7 @@
                         <ul class="dropdownMenu">
                             <li><a href="">Quản lý sản phẩm</a>
                                 <ul class="sub-menu">
-                                    <li><a class="tablinks" onclick="OpenTab(event, 'XemSanpham')">Xem sản phẩm</a></li>
+                                    <li><a class="tablinks" onclick="OpenTab(event, 'XemSanpham')">Tất cả sản phẩm</a></li>
                                     <li><a class="tablinks" onclick="OpenTab(event, 'QuanlySanpham')">Thêm sản phẩm</a></li>
                                 </ul>
                             </li>
@@ -47,15 +47,15 @@
                             <input type="text" name="tukhoa">
                         </form>
                         <div id="XemSanpham" class="TabContentX">
-                        
                             <div class="bangContent">
                                 <table>                                  
                                     <tr>
                                         <th id="masp">Mã sản phẩm</th>
-                                        <th id="hinh">Hình ảnh</th>
+                                        <th id="img">Hình ảnh</th>
                                         <th id="tensp">Tên sản phẩm</th>
-                                        <th id="gia">Giá</th>
-                                        <th>Hành động</th>                      
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>    
+                                        <th>Hành động</th>                  
                                     </tr>  
                                     <?php if(count($products)>0){ 
                                         foreach($products as $pro){            
@@ -64,10 +64,17 @@
                                     <tr>
 
                                         <td><?php echo $pro['MaSP']?></td>
-                                        <td><img src="<?php echo SITE_ROOT_IMG.$pro['img'];?>" alt=""></td>
+                                        <td><a href="#">
+                                                <img src="<?php echo SITE_ROOT_IMG.$pro['img'];?>" alt="">
+                                        </a>   
+                                        </td>
                                         <td id="tensp"><?php echo $pro['TenSP']?></td>
-                                        <td><?php echo $pro['GIA']?></td>
-                                        <td><a style="cursor:hand;" onclick="deletePro('<?php echo $pro['MaSP'];?>')">Xóa</a></td>                  
+                                        <td><?php echo number_format($pro['GIA'],0).'đ' ?></td>
+                                        <td><?php echo $pro['SLSP']?></td>  
+                                        <td>
+                                            <a href="" onclick="deletePro('<?php echo $pro['MaSP']?>')">Xóa</a>
+                                            <a href="#" onclick="xemChiTiet('<?php echo $pro['MaSP']?>')">Cập nhật</a>
+                                        </td>             
                                     </tr>   
                                     <?php }}?>   
                                 </table>
@@ -121,7 +128,14 @@
                                         </div>
                                     </div>
                                 </div>
-                             
+                                <div class="rowContent">
+                                    <div class="lbltitle">
+                                        <label>Số lượng</label>
+                                    </div>
+                                    <div class="lblinput">
+                                        <input type="text" id="txtSL" value="">
+                                    </div>
+                                </div>
            
                                 <div class="rowContent">
                                     <div class="lbltitle">
@@ -163,23 +177,32 @@
         document.getElementById(productName).style.display = "block";
         evt.currentTarget.className += " active";
         }
+    function xemChiTiet(MaSP){
+        window.open("<?php echo SITE_ROOT ?>product/chinhsuasp?msp="+MaSP, "_top");
+    }
     function deletePro(MaSP){
         //var maG = $('#MaG').val();
-        $('#MaSP').val(MaSP);
+        //$('#MaSP').val(MaSP);
             $.ajax('/product/kenhnguoiban/XoaSanpham',{   
                 type: 'POST',  // http method
                 data: { 
                     'MaSP': MaSP,                 
                 },  // data to submit
                 success: function (data, status, xhr) {
-                    alert(data);
+                    if(data==1){
+                    alert("Đã xóa thành công");
+                    location.reload();
+                   }
+                    else
+                        alert("Xóa không thành công");
                 }
             });
     }
-    function AddProduct(TenSP,Hinh,TenMau,TenSz,TenDM,Gia){
+    function AddProduct(){
         var TenSP = $('#txtname').val();
         var MaDM = $('#MaDM').val();
         var Hinh = $('#Hinh').val();
+        var SLSP = $('#txtSL').val();
         var Gia = $('#txtGia').val();
             $.ajax('/product/kenhnguoiban/ThemSanpham',{   
                 type: 'POST',  // http method
@@ -187,6 +210,7 @@
                     'TenSP': TenSP,
                     'Hinh': Hinh,
                     'MaDM': MaDM,
+                    'SLSP': SLSP,
                     'Gia': Gia,
                 },  // data to submit
                 success: function (data, status, xhr) {

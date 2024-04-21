@@ -44,19 +44,23 @@ class kenhnguoiban_Controller extends Controller {
     }
     public function XoaSanpham() {
         $MaSP = get_post_var('MaSP');
-        echo "đã xóa thành công";
-        return $this->model->getxoaSanpham($MaSP);
-       
+        $result= $this->model->getxoaSanpham($MaSP);
+        if(!$result)
+            echo 0;
+        else
+            echo 1;
+            
     }
 
     public function ThemSanpham() {
             $TenSP = get_post_var('TenSP');
             $Hinh = get_post_var('Hinh');
             $MaDM = get_post_var('MaDM');
+            $SLSP = get_post_var('SLSP');
             $Gia = get_post_var('Gia');
             $split = html_entity_decode(str_replace('C:fakepath', '', $Hinh));
             $img="tttl/img/" .$split;
-            $result = $this->model->getThemSanpham($TenSP,$img,$MaDM,$Gia);
+            $result = $this->model->getThemSanpham($TenSP,$MaDM,$img,$SLSP,$Gia);
     }   
 }
 ?>

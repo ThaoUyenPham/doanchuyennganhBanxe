@@ -29,11 +29,16 @@ require_once (SERVER_ROOT . 'libs' . DS . 'model.php');
 require_once (SERVER_ROOT . 'libs' . DS . 'view.php');
 require_once (SERVER_ROOT . 'libs' . DS . 'controller.php');
 require_once (SERVER_ROOT . 'libs' . DS . 'bootstrap.php');
+require_once (SERVER_ROOT . 'libs' . DS . 'PHPMailer'.DS.'src'.DS.'PHPMailer.php');//
+require_once (SERVER_ROOT . 'libs' . DS . 'PHPMailer'.DS.'src'.DS.'Exception.php');
+require_once (SERVER_ROOT . 'libs' . DS . 'PHPMailer'.DS.'src'.DS.'SMTP.php');
 if ($LIB_DIR = getenv ('PHP_LIBRARIES')) {
     require_once ($LIB_DIR . DS . 'adodb5' . DS . 'adodb.inc.php');
     require_once ($LIB_DIR . DS . 'PEAR' . DS . 'PEAR.php');
     require_once ($LIB_DIR . DS . 'PEAR' . DS . 'Savant3.php');
     require_once ($LIB_DIR . DS . 'nth' . DS . 'nth.inc.php');
+    // require_once ($LIB_DIR . DS . 'nth' . DS . 'nth.inc.php');
+    
 }
 // Load Zend Framework
 $zf2Path = false;
@@ -102,3 +107,58 @@ $bootstrap = new Bootstrap();
     
     $_SESSION['IPAddress'] = $ipaddress;
 
+
+  //mail
+ 
+
+
+//  require 'config.php';
+/**@param [string] $email,
+@param [string] $subject,
+@param [string] $messenger,
+@return [string] 
+*/
+// function sendMail($email, $subject, $messenger){
+//     $mail = new PHPMailer\PHPMailer\PHPMailer(true);//tạo biến để lưu trữ
+//     //var_dump($mail);die();
+//     //gọi phương thức isSMTP để sử dụng giao thức SMTP gửi mail
+//     try{
+//         $mail->SMTPDebug = SMTP::DEBUG_SERVER;  
+//         $mail->isSMTP();
+//         //đặt thuộc tính SMTPAuth thành true
+//         $mail->SMTPAuth = true;
+//         //đặt thuộc tính host thành hằng số MAILHOST
+//         $mail->Host = MAILHOST;
+    
+//         $mail->Password = PASSWORD;
+//         $mail->SMTPSecure = PHPMailer::ENCRYTION_STARTTLS;
+    
+//         $mail->Port=25;//587
+    
+//         $mail->setFrom(SEND_FROM,SEND_FROM_NAME);
+    
+//         $mail->addAddress($email);
+//         $mail->addReply(REPLY_TO,REPLY_TO_NAME);
+    
+//         $mail->IsHTML(true);
+    
+//         $mail->Subject = $subject;
+    
+//         $mail->Body = $messenger;
+    
+//         $mail->AltBody = $messenger;
+//         $mail->send();
+//         echo "thành công";
+//     }
+//  catch (Exception $e) {
+//     echo "Error: ";
+//  }   
+
+//     // if(!$mail->send()){
+//     //     return "Email không gửi được";
+//     // }
+//     // else{
+//     //     return "Gửi thành công";
+//     // }
+    
+// }

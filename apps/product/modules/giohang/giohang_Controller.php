@@ -31,13 +31,12 @@ class giohang_Controller extends Controller {
     public function CapNhatGiohang() {
         $MaG = get_post_var('MaG');
         $soluong = get_post_var('soluong');
-        if($soluong >0){
-            echo 1;
-        }
-        else{
-            echo 0;
-        }
-        return $this->model->getCapNhatSanpham($MaG,$soluong);      
+        
+        $result = $this->model->getCapNhatSanpham($MaG,$soluong);   
+        // if($result==null)
+        //     echo 0;
+        // else
+        //     echo 1;
     }
     public function Order(){
         session_start();

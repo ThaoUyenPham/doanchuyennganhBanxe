@@ -19,7 +19,23 @@ define('SESSION_PREFIX', 'WebSession');
 
 //Database
 define('DATABASE_USER', 'root');
-define('DATABASE_PASS', '123456');
+define('DATABASE_PASS', 'Uyen123');
 define('DATABASE_NAME', 'ql_banhang');
 define('SERVICE_NAME', 'localhost');
 define('DATABASE_TYPE', 'MYSQL'); // MSSQL or MYSQL
+
+// //mail
+// define('MAILHOST','smtp.gmail.com');//hướng dẫn PHP Mailer kết nối với máy chú thư SMTP do Gmail lưu trữ
+//     //xác định tên người dùng của mình, đây là địa chỉ Mail mà Admin sử dụng
+    define('USERNAME','thaouyenpham17@gmail.com');
+//     //xác định mật khẩu ứng dụng 16 chữ số
+    define('PASSWORD','Uyenpmt@!303');
+//     // xác định địa chỉ gửi từ
+    define('SEND_FROM','thaouyenpham17@gmail.com');
+//     //xác định tên của admin
+    define('SEND_FROM_NAME','thaouyenpham');
+//     //xác định địa chỉ trả lời
+//     define('REPLY_TO','thaouyenpham17@gmail.com');
+//     // hằng số tên trả lời sử dụng tên của mình
+//     define('REPLY_TO_NAME','thaouyenpham');  
+    

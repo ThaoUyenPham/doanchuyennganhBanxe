@@ -10,6 +10,18 @@ class dathang_Model extends Model {
     public function getGioHang(){    
         $query = "select * from ql_banhang.giohang";     
         return $this->qSelect($query);
-}
-   
+    }
+    public function TaoDonHang($TenKH,$DiaChi,$Sodienthoai,$Email,$Hinh,$Gia,$TenSP,$SoLuong,$TongTien){    
+        $query = "insert into ql_banhang.HOADON(TenKH,DiaChi,Sodienthoai,Email,Hinh,Gia,TenSP,SoLuong,TongTien) 
+        values (N'".$TenKH."',N'".$DiaChi."','".$Sodienthoai."','".$Email."',N'".$Hinh."',".$Gia.",
+        N'".$TenSP."',".$SoLuong.",".$TongTien.")";
+        var_dump($query);die();
+        return $this->qInsert($query);
+    }
+    // public function TaoDonHang($TenKH,$DiaChi,$Sodienthoai,$Email){    
+    //         $query = "insert into ql_banhang.HOADON(TenKH,DiaChi,Sodienthoai,Email) 
+    //         values (N'".$TenKH."',N'".$DiaChi."',N'".$Sodienthoai."',N'".$Email."')";
+    //         var_dump($query);die();
+    //         return $this->qInsert($query);
+    //     }
 }

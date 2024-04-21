@@ -82,7 +82,7 @@
                 <div class="header_acc">
                     <ul class="account">
                         <li>
-                            <a href="/product/dangnhap">
+                            <a href="<?php echo SITE_ROOT;?>product/dangnhap">
                                 <button type="submit" class="button_acc">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M12.1596 10.87C12.0596 10.86 11.9396 10.86 11.8296 10.87C9.44957 10.79 7.55957 8.84 7.55957 6.44C7.55957 3.99 9.53957 2 11.9996 2C14.4496 2 16.4396 3.99 16.4396 6.44C16.4296 8.84 14.5396 10.79 12.1596 10.87Z" stroke="#1A0405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7.15973 14.56C4.73973 16.18 4.73973 18.82 7.15973 20.43C9.90973 22.27 14.4197 22.27 17.1697 20.43C19.5897 18.81 19.5897 16.17 17.1697 14.56C14.4297 12.73 9.91973 12.73 7.15973 14.56Z" stroke="#1A0405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
@@ -90,7 +90,7 @@
                             </a>
                             
                         </li>
-                        <li><a href="/product/giohang">
+                        <li><a href="<?php echo SITE_ROOT;?>product/giohang">
                             <button type="submit" class="button_acc" id="cart">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001" stroke="#0A0B11" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.99983 22H14.9998C19.0198 22 19.7398 20.39 19.9498 18.43L20.6998 12.43C20.9698 9.99 20.2698 8 15.9998 8H7.99983C3.72983 8 3.02983 9.99 3.29983 12.43L4.04983 18.43C4.25983 20.39 4.97983 22 8.99983 22Z" stroke="#0A0B11" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M15.4955 12H15.5045" stroke="#0A0B11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.49451 12H8.50349" stroke="#0A0B11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>                       
                             </button>

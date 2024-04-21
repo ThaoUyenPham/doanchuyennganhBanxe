@@ -33,10 +33,9 @@
                     foreach($products as $pro){
                 ?>
                 <input type="hidden" id="tenSP" value="<?php echo $pro['TenSP']; ?>"><!--gọi TenSP trong sql ra (TenSP) phải trùng khớp với TenSP trong table sanpham-->
-                <input type="hidden" id="gia" value="<?php echo $pro['GIA']; ?>">
+                <input type="hidden" id="gia" val="<?php echo ($pro['GIA'])?>" value="<?php echo number_format($pro['GIA'],0)?>">
                 <input type="hidden" id="Hinh" value="<?php echo $pro['img']; ?>">
-
-                    
+                   
                 <div class="productdetail_gallery">
                     <div class="product-gallery">
                         
@@ -57,19 +56,10 @@
                         <div class="productInfo_tittle">
                             <h3><?php echo $pro['TenSP']?></h3>
                             <h4>Mã sản phẩm:<?php echo $pro['MaSP']?></h4>
+                            <h4>Số lượng:<?php echo $pro['SLSP']?></h4>
                         </div>
                         <div class="productInfo_price">
-                            <p id="gia"><?php echo number_format($pro['GIA'],0)."đ"?></p>
-                        </div>
-                        <div class="productInfo_size">
-                            <!-- <label>Chọn size: -->
-                                <!-- <b>?</b> -->
-                            </label>
-                            <ul>
-                                <!-- <li><a href="#">S</a></li>
-                                <li><a href="#">M</a></li>
-                                <li><a href="#">L</a></li> -->
-                            </ul>
+                            <p><?php echo number_format($pro['GIA'],0)?></p>
                         </div>
                         <div class="productInfo_quanity">
                             <div class="productInfo_input">
@@ -156,6 +146,7 @@
         var tenSP = $('#tenSP').val();
         var amount = $('#amount').val();
         var gia = $('#gia').val();
+        gia = Number(gia.replace(/,/g, ""));
         // console.log(color);
         $.ajax('/product/chitietsanpham/saveCartProduct',{   
             type: 'POST',  // http method

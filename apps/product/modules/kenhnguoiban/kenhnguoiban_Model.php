@@ -14,25 +14,26 @@ class kenhnguoiban_Model extends Model {
         return $this->qSelect($query);
     }
     public function getDanhSachSanPham($item_per_page,$offet){
-            $query = "select MaSP,img,TenSP,GIA,MADM from ql_banhang.sanpham
+            $query = "select MaSP,img,SLSP,TenSP,GIA,MADM from ql_banhang.sanpham
             order by MaSP asc limit ".$item_per_page." offset ".$offet."";
         return $this->qSelect($query);
     }
 
     public function getxoaSanpham($MaSP){
         $query = "delete from ql_banhang.sanpham where MaSP = '".$MaSP."'";
+       // var_dump($query);die();
         return $this->qDelete($query);
     }
 
-    public function getThemSanpham($TenSP,$img,$MaDM,$Gia){
-        $query = "insert into ql_banhang.sanpham(TenSP,img,GIA,MaDM) values (N'".$TenSP."','".$img."',".$Gia.",'".$MaDM."')";
-        var_dump($query);die();
+    public function getThemSanpham($TenSP,$MaDM,$img,$SLSP,$Gia){
+        $query = "insert into ql_banhang.sanpham(TenSP,MaDM,img,SLSP,GIA) values (N'".$TenSP."','".$MaDM."','".$img."',".$SLSP.",".$Gia.")";
+        //var_dump($query);die();
         return $this->qInsert($query, true);
     }
     
     public function getCapnhatSP($MaG,$soluong){
         $query="update ql_banhang.giohang1 set soluong='".$soluong."' where MaG='".$MaG."'";
-        var_dump($query);die();
+        //var_dump($query);die();
         return $this->qUpdate($query);
     }
     // public function getSPGiohang($MaG){
