@@ -69,6 +69,7 @@
                                     <table style="width:100%">
                                         <thead>
                                             <tr>
+                                                <th class="headerTable">Mã SP</th>
                                                 <th class="headerTable">Hình ảnh</th>
                                                 <th class="headerTable">Sản phẩm</th>
                                                 <th class="headerTable">Giá</th>
@@ -92,7 +93,7 @@
                                             ?>
                                             <tr>
                                             
-                                                <!-- <input type="hidden" id="soluong" value="<?php echo $cart['soluong']; ?>"> -->
+                                                <input type="hidden" id="maSP" value="<?php echo $cart['maSP']; ?>">
                                                 <input type="hidden" id="MaG" value="<?php echo $cart['MaG']; ?>">
                                                 <input type="hidden" id="Hinh" value="<?php echo $cart['Hinh']; ?>">
                                                 <input type="hidden" id="TenSP" value="<?php echo $cart['tenSP']; ?>">
@@ -100,10 +101,11 @@
                                                 <!-- <input type="hidden" id="SoLuong" value="<?php echo $cart['soluong']; ?>"> -->
                                                 <!-- <input type="hidden" id="TongTien" value="<?php echo $cart['tenSP']; ?>"> -->
 
+                                                <td class="product_id" val="<?php echo $cart['maSP']?>"><?php echo $cart['maSP']?></td>
                                                 <td class="product_thumb" ><img src="<?php echo SITE_ROOT_IMG.$cart['Hinh']?>" alt=""></td>
-                                                <td class="product_name" ><?php echo $cart['tenSP']?></td>
+                                                <td class="product_name" val="<?php echo $cart['tenSP']?>"><?php echo $cart['tenSP']?></td>
                                                 <td class="product-price"><?php echo number_format ($cart['gia'],0)?></td>
-                                                <td class="product_quantity"><?php echo $cart['soluong']?></td>
+                                                <td class="product_quantity" val="<?php echo $cart['soluong']?>"><?php echo $cart['soluong']?></td>
                                                 <td class="product_total" ><?php echo number_format($cart['gia']*$cart['soluong'],0)?></td>                                              
                                             </tr>
                                             <?php }}?>
@@ -147,39 +149,61 @@
         var DiaChi = $('#DiaChi').val();
         var Sodienthoai = $('#Sodienthoai').val();
         var Email = $('#Email').val();
-        var Hinh = $('#Hinh').val();
-        var Gia = $('#Gia').val();
-        var TenSP = $('#TenSP').val();
-        var SoLuong = $('#SoLuong').text();
         var TongTien = $('#TongTien').text();
         TongTien = Number(TongTien.replace(/,/g, ""));
 
-            $.ajax('/product/dathang/ThemHoaDon',{   
-                type: 'POST',  // http method
-                data: { 
-                    'TenKH': TenKH,  
-                    'DiaChi': DiaChi,  
-                    'Sodienthoai': Sodienthoai,  
-                    'Email': Email, 
-                    'Hinh': Hinh, 
-                    'Gia': Gia,  
-                    'TenSP': TenSP,  
-                    'Sodienthoai': Sodienthoai,  
-                    'SoLuong': SoLuong, 
-                    'TongTien': TongTien, 
-                },  // data to submit
-                success: function (data, status, xhr) {
-                //    if(data==1){
-                //     alert("Đã đặt thành công");
-                //     // location.reload();
-                //    }
-                //     else
-                //         alert("đặt không thành công");
+        let soluongElements = document.getElementsByClassName("product_quantity");
+        let soluongValues = []; // Mảng để lưu trữ nhiều giá trị
+            for (let i = 0; i < soluongElements.length; i++) {
+                let element = soluongElements[i];
+                console.log('element ', element);
+                let value = element.getAttribute('val');
+                console.log('i: ' + i + '; value: ' + value);
+                soluongValues.push(Number(value)); //Chuyển đổi thành số và lưu trữ trong mảng
+        }
+
+    let MaSPElements = document.getElementsByClassName("product_id");
+    let MaSPValues = []; // This should also be an array
+    for (let i = 0; i < MaSPElements.length; i++) {
+        let element = MaSPElements[i];
+        console.log('element ', element);
+        let value = element.getAttribute('val');
+        console.log('i: ' + i + '; value: ' + value);
+        MaSPValues.push(value); 
+    }
+
+    for (let i = 0; i < soluongValues.length; i++) {
+            $.ajax('/product/dathang/ThemHoaDon', {
+            type: 'POST',
+            data: {
+                'MaSPValues': MaSPValues[i],
+                'soluongValues': soluongValues[i],
+                              
+            },
+            success: function (data, status, xhr) {
+                //alert("Cập nhật sản phẩm thành công");
                 console.log(data);
                 console.log(status);
-                } 
-            
-            });
-       
+
+            }
+        });
     }
+    $.ajax('/product/dathang/ThemKH', {
+            type: 'POST',
+            data: {
+                'TenKH': TenKH,  
+                'DiaChi': DiaChi,  
+                'Sodienthoai': Sodienthoai,  
+                'Email': Email, 
+                'Sodienthoai': Sodienthoai,  
+                'TongTien': TongTien,                        
+            },
+            success: function (data, status, xhr) {
+                //alert("Cập nhật sản phẩm thành công");
+                console.log(data);
+                console.log(status);
+
+            }
+        });
+}
 </script>

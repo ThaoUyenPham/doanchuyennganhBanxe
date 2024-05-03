@@ -33,55 +33,68 @@ class dathang_Controller extends Controller {
             //redirect lai trang dang nhap
         }   
     }
-    public function ThemHoaDon() {
+    public function ThemKH() {
         $TenKH = get_post_var('TenKH');
         $DiaChi = get_post_var('DiaChi');
         $Sodienthoai = get_post_var('Sodienthoai');
         $Email = get_post_var('Email');
-        $Hinh = get_post_var('Hinh');
-        $Gia = get_post_var('Gia');
-        $TenSP = get_post_var('TenSP');
-        $SoLuong = get_post_var('SoLuong');
+       
+        return $this->model->TaoDonHangTTKH($TenKH,$DiaChi,$Sodienthoai,$Email);
+
+    }
+    public function ThemHoaDon() {
+        //$Hinh = get_post_var('Hinh');
+        //$Gia = get_post_var('Gia');
+        //$tenspValues = get_post_var('tenspValues');
+        $soluongValues = get_post_var('soluongValues');
+        $MaSPValues = get_post_var('MaSPValues');
         $TongTien = get_post_var('TongTien');
+    //     $mail = new PHPMailer(true);
+    //    try{
+    //         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    //         $mail->isSMTP();                                            //Send using SMTP
+    //         $mail->Host = 'smtp.gmail.com'; // Server SMTP của gmail
+    //         $mail->SMTPAuth = true; // Bật xác thực SMTP
+    //         $mail->Username = USERNAME; // Tài khoản email
+    //         $mail->Password = PASSWORD; // Mật khẩu ứng dụng ở bước 1 hoặc mật khẩu email
+    //         $mail->SMTPSecure = 'ssl'; // Mã hóa SSL
+    //         $mail->Port = 465; // Cổng kết nối SMTP là 465
 
-        $mail = new PHPMailer(true);
-       try{
-            $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-            $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host = 'smtp.gmail.com'; // Server SMTP của gmail
-            $mail->SMTPAuth = true; // Bật xác thực SMTP
-            $mail->Username = USERNAME; // Tài khoản email
-            $mail->Password = PASSWORD; // Mật khẩu ứng dụng ở bước 1 hoặc mật khẩu email
-            $mail->SMTPSecure = 'ssl'; // Mã hóa SSL
-            $mail->Port = 465; // Cổng kết nối SMTP là 465
+    //       //check validate email address
+    //         if($mail->validateAddress($Email)){
+    //         echo 'email nguoi nhan: '.$Email.'<br>';
+    //         $mail->setFrom(SEND_FROM,SEND_FROM_NAME);
+    //         $mail->addAddress($Email, $TenKH);
+    //         //content
+    //         $mail->isHTML(true); // Set email format to HTML
+    //         $mail->Subject = 'Here is the subject'; // Tiêu đề
+    //         $mail->Body = 'This is the HTML message body in bold!'; // Nội dung
 
-          //check validate email address
-            if($mail->validateAddress($Email)){
-            echo 'email nguoi nhan: '.$Email.'<br>';
-            $mail->setFrom(SEND_FROM,SEND_FROM_NAME);
-            $mail->addAddress($Email, $TenKH);
-            //content
-            $mail->isHTML(true); // Set email format to HTML
-            $mail->Subject = 'Here is the subject'; // Tiêu đề
-            $mail->Body = 'This is the HTML message body in bold!'; // Nội dung
+    //         $result = $mail->Send();
+    //         //var_dump($result);
+    //         if(!$result) {
+    //             echo "Mailer Error: " . $mail->ErrorInfo;
+    //         } else {
+    //             echo "Message sent!";
+    //         }
+    //     }else{
+    //         echo 'email is not valid';
+    //     }
+    //   }
+    //   catch(Exception $e){
+    //       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    //   }
+    
+    $kq2 = $this->ThemKH();
+    if($kq2==true){
+        $kq3 = $this->model->TaoDonHangTTSP($soluongValues,$TongTien,$MaSPValues,$kq2); 
+    }
+    else{
+        echo "khong lay duoc kq2";
+    }
 
-            $result = $mail->Send();
-            //var_dump($result);
-            if(!$result) {
-                echo "Mailer Error: " . $mail->ErrorInfo;
-            } else {
-                echo "Message sent!";
-            }
-        }else{
-            echo 'email is not valid';
-        }
-      }
-      catch(Exception $e){
-          echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-      }
-        // $result = $this->model->TaoDonHang($TenKH,$DiaChi,$Sodienthoai,$Email,$Hinh,$Gia,$TenSP,$SoLuong,$TongTien); 
-        
-            
+        //$SLDatHang = $this->model->TaoDonHang($kq1);
+        //$CapNhatSoLuong =  $this->model->TaoDonHang($kq1);
         //return $this->model->TaoDonHang($TenKH,$DiaChi,$Sodienthoai,$Email);
     }
     
