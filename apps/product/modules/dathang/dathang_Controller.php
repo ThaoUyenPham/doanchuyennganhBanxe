@@ -33,71 +33,43 @@ class dathang_Controller extends Controller {
             //redirect lai trang dang nhap
         }   
     }
-    public function ThemKH() {
-        $TenKH = get_post_var('TenKH');
-        $DiaChi = get_post_var('DiaChi');
-        $Sodienthoai = get_post_var('Sodienthoai');
-        $Email = get_post_var('Email');
-       
-        return $this->model->TaoDonHangTTKH($TenKH,$DiaChi,$Sodienthoai,$Email);
-
-    }
     public function ThemHoaDon() {
-        //$Hinh = get_post_var('Hinh');
-        //$Gia = get_post_var('Gia');
-        //$tenspValues = get_post_var('tenspValues');
+        $MaKH = get_post_var('MaKH');
+        $Email = get_post_var('Email');
         $soluongValues = get_post_var('soluongValues');
         $MaSPValues = get_post_var('MaSPValues');
         $TongTien = get_post_var('TongTien');
-    //     $mail = new PHPMailer(true);
-    //    try{
-    //         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-    //         $mail->isSMTP();                                            //Send using SMTP
-    //         $mail->Host = 'smtp.gmail.com'; // Server SMTP của gmail
-    //         $mail->SMTPAuth = true; // Bật xác thực SMTP
-    //         $mail->Username = USERNAME; // Tài khoản email
-    //         $mail->Password = PASSWORD; // Mật khẩu ứng dụng ở bước 1 hoặc mật khẩu email
-    //         $mail->SMTPSecure = 'ssl'; // Mã hóa SSL
-    //         $mail->Port = 465; // Cổng kết nối SMTP là 465
-
-    //       //check validate email address
-    //         if($mail->validateAddress($Email)){
-    //         echo 'email nguoi nhan: '.$Email.'<br>';
-    //         $mail->setFrom(SEND_FROM,SEND_FROM_NAME);
-    //         $mail->addAddress($Email, $TenKH);
-    //         //content
-    //         $mail->isHTML(true); // Set email format to HTML
-    //         $mail->Subject = 'Here is the subject'; // Tiêu đề
-    //         $mail->Body = 'This is the HTML message body in bold!'; // Nội dung
-
-    //         $result = $mail->Send();
-    //         //var_dump($result);
-    //         if(!$result) {
-    //             echo "Mailer Error: " . $mail->ErrorInfo;
-    //         } else {
-    //             echo "Message sent!";
-    //         }
-    //     }else{
-    //         echo 'email is not valid';
-    //     }
-    //   }
-    //   catch(Exception $e){
-    //       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-    //   }
     
-    $kq2 = $this->ThemKH();
-    if($kq2==true){
-        $kq3 = $this->model->TaoDonHangTTSP($soluongValues,$TongTien,$MaSPValues,$kq2); 
-    }
-    else{
-        echo "khong lay duoc kq2";
-    }
+        // Chuyển đổi chuỗi thành mảng
+        $array = explode(",", $soluongValues);
+        $arraymasp = explode(",", $MaSPValues);
+    
+        // Kiểm tra xem độ dài của hai mảng có bằng nhau không
+        if (count($array) != count($arraymasp)) {
+            return false;
+        }
+    
+        $results = []; // Tạo một mảng để lưu kết quả
+        $kqSP=[];
+        // Lặp qua các mảng đồng thời
+        for ($i = 0; $i < count($array); $i++) {
+            // Lấy số lượng và mã sản phẩm tương ứng
+            $soluong = intval($array[$i]);
+            //print_r($soluong);
+            $MaSP = $arraymasp[$i];
 
-        //$SLDatHang = $this->model->TaoDonHang($kq1);
-        //$CapNhatSoLuong =  $this->model->TaoDonHang($kq1);
-        //return $this->model->TaoDonHang($TenKH,$DiaChi,$Sodienthoai,$Email);
+            // Gọi hàm xử lý tạo đơn hàng và lưu kết quả vào mảng
+            $result = $this->model->TaoDonHangTTKH($MaSP,$MaKH,$Email, $soluong, $TongTien);
+            $results[] = $result;
+            $kq1 = $this->model->CapNhatSPVuaDat($MaSP);
+            $kqSP[]=$kq1;
+           
+        }
+        return ['results' => $results, 'kqSP' => $kqSP];
+        
+        //return $results; // Trả về mảng kết quả
     }
     
-   }
+}
  
 ?>

@@ -73,11 +73,11 @@ $('#login').click(function(){ //khi nhấn vào giỏ hàng
                 },  // data to submit          
                 success: function (data, status, xhr) {
                     if(data==1){
-                        alert("Xin chào '"+username+"' Bạn đăng nhập thành công");
+                       alert("Xin chào '"+username+"' Bạn đăng nhập thành công");
                         window.open("<?php echo SITE_ROOT ?>product/dathang","_self");
                     }
                     else{
-                        alert("Tài khoản hoặc mật khẩu không đúng");
+                       alert("Tài khoản hoặc mật khẩu không đúng");
                     }  
                 }
             });

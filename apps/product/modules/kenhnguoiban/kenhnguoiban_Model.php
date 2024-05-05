@@ -27,8 +27,8 @@ class kenhnguoiban_Model extends Model {
 
     public function getThemSanpham($TenSP,$MaDM,$img,$SLSP,$Gia){
         $query = "insert into ql_banhang.sanpham(TenSP,MaDM,img,SLSP,GIA) values (N'".$TenSP."','".$MaDM."','".$img."',".$SLSP.",".$Gia.")";
-        //var_dump($query);die();
-        return $this->qInsert($query, true);
+        var_dump($query);die();
+        return $this->qInsert($query);
     }
     
     public function getCapnhatSP($MaG,$soluong){

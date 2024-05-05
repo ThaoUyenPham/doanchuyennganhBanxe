@@ -36,7 +36,7 @@
                                             if(count($data) > 0){ 
                                                 foreach($data as $data){
                                         ?>
-                                        
+                                        <input type="hidden" id="MaKH" value="<?php echo $data['MaKH']?>"></input>
                                         <tr>
                                             <td class="product_infor">Họ tên</td>
                                             <td class="product_text"><input type="text" id="TenKH" value="<?php echo $data['tenkh']?>"></td>                                             
@@ -145,9 +145,7 @@
 </html>
 <script>
     function DatHang(){
-        var TenKH = $('#TenKH').val();
-        var DiaChi = $('#DiaChi').val();
-        var Sodienthoai = $('#Sodienthoai').val();
+        var MaKH = $('#MaKH').val();
         var Email = $('#Email').val();
         var TongTien = $('#TongTien').text();
         TongTien = Number(TongTien.replace(/,/g, ""));
@@ -170,40 +168,26 @@
         let value = element.getAttribute('val');
         console.log('i: ' + i + '; value: ' + value);
         MaSPValues.push(value); 
-    }
+    };
 
     for (let i = 0; i < soluongValues.length; i++) {
-            $.ajax('/product/dathang/ThemHoaDon', {
+            $.ajax('/product/dathang/ThemHoaDon', {//gom vo 1 ham, roi qua conntroller xu ly
             type: 'POST',
             data: {
                 'MaSPValues': MaSPValues[i],
                 'soluongValues': soluongValues[i],
+                'MaKH': MaKH,  
+                'Email': Email,  
+                'TongTien': TongTien,   
                               
             },
             success: function (data, status, xhr) {
-                //alert("Cập nhật sản phẩm thành công");
-                console.log(data);
-                console.log(status);
+                alert("Bạn đã đặt hàng thành công");
+                // console.log(data);
+                // console.log(status);
 
             }
         });
     }
-    $.ajax('/product/dathang/ThemKH', {
-            type: 'POST',
-            data: {
-                'TenKH': TenKH,  
-                'DiaChi': DiaChi,  
-                'Sodienthoai': Sodienthoai,  
-                'Email': Email, 
-                'Sodienthoai': Sodienthoai,  
-                'TongTien': TongTien,                        
-            },
-            success: function (data, status, xhr) {
-                //alert("Cập nhật sản phẩm thành công");
-                console.log(data);
-                console.log(status);
-
-            }
-        });
 }
 </script>

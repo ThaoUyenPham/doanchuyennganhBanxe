@@ -121,7 +121,7 @@
                                                         if(count($danhmuc) > 0){ 
                                                             foreach($danhmuc as $dm){
                                                     ?>                                              
-                                                    <option id="MaDM" value="<?php echo $dm['MaDM']?>"><?php echo $dm['TenSP']?></option>                                     
+                                                    <option id="MaDM" value="<?php echo $dm['MaDM']?>"><?php echo $dm['TenDM']?></option>                                     
                                                     <?php }}?>
                                                 </select>
                                              </form>                                    
@@ -204,6 +204,7 @@
         var Hinh = $('#Hinh').val();
         var SLSP = $('#txtSL').val();
         var Gia = $('#txtGia').val();
+        //Gia = Number(Gia.replace(/,/g, ""));
             $.ajax('/product/kenhnguoiban/ThemSanpham',{   
                 type: 'POST',  // http method
                 data: { 
@@ -215,8 +216,8 @@
                 },  // data to submit
                 success: function (data, status, xhr) {
                     console.log(data);
-                    // console.status(data);
-                    alert("Them thanh cong");
+                    console.status(data);
+                    // alert("Thêm sản phẩm thành công");
                 }
 
             });
