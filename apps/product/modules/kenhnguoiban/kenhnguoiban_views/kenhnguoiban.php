@@ -37,6 +37,7 @@
                                 <ul class="sub-menu">
                                     <li><a class="tablinks" onclick="OpenTab(event, 'XemSanpham')">Tất cả sản phẩm</a></li>
                                     <li><a class="tablinks" onclick="OpenTab(event, 'QuanlySanpham')">Thêm sản phẩm</a></li>
+                                    <li><a class="tablinks" onclick="OpenTab(event, 'QuanlyDonhang')">Quản lý đơn hàng</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -62,7 +63,6 @@
                                     ?>
                                     <input type="hidden" id="MaSP" value="<?php echo $pro['MaSP']; ?>">
                                     <tr>
-
                                         <td><?php echo $pro['MaSP']?></td>
                                         <td><a href="#">
                                                 <img src="<?php echo SITE_ROOT_IMG.$pro['img'];?>" alt="">
@@ -148,6 +148,30 @@
                                 <button name="AddProduct" id="AddProduct" onclick="AddProduct()">Thêm sản phẩm</button>
                             </div>
                         </div>
+                        <div id="QuanlyDonhang" class="TabContentQL">
+                        <div class="bangContentt">
+                            <table>                                  
+                                <tr>
+                                    <th id="donhang">Người nhận</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Tổng cộng</th>
+                                    <th>Hành động</th>                  
+                                </tr>  
+                                    <?php if(count($order)>0){ 
+                                        foreach($order as $orders){            
+                                    ?>
+                                    <input type="hidden" id="MaKH" value="<?php echo $orders['MaKH']; ?>">
+                                    <tr>
+                                        <!-- <td><?php echo $orders['MaKH']?></td> -->
+                                        <td class="order"><?php echo $orders['tenkh']?></td>
+                                        <td><?php echo $orders['Ngaydat']?></td>
+                                        <td><?php echo number_format($orders['TongTien'],0)?></td>
+                                        <td><a href="#" onclick="xemDonHang('<?php echo $orders['MaKH']?>')">Xem chi tiết</a></td>             
+                                    </tr>   
+                                    <?php }}?>   
+                                </table>
+                            </div>
+                        </div>
                      </div>       
                 </div>
             </div>
@@ -179,6 +203,9 @@
         }
     function xemChiTiet(MaSP){
         window.open("<?php echo SITE_ROOT ?>product/chinhsuasp?msp="+MaSP, "_top");
+    }
+    function xemDonHang(MaKH){
+        window.open("<?php echo SITE_ROOT ?>product/donhang?makh="+MaKH, "_top");
     }
     function deletePro(MaSP){
         //var maG = $('#MaG').val();

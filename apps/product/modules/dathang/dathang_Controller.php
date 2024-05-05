@@ -39,7 +39,7 @@ class dathang_Controller extends Controller {
         $soluongValues = get_post_var('soluongValues');
         $MaSPValues = get_post_var('MaSPValues');
         $TongTien = get_post_var('TongTien');
-    
+        $date = date('Y-m-d H:i:s');
         // Chuyển đổi chuỗi thành mảng
         $array = explode(",", $soluongValues);
         $arraymasp = explode(",", $MaSPValues);
@@ -59,7 +59,7 @@ class dathang_Controller extends Controller {
             $MaSP = $arraymasp[$i];
 
             // Gọi hàm xử lý tạo đơn hàng và lưu kết quả vào mảng
-            $result = $this->model->TaoDonHangTTKH($MaSP,$MaKH,$Email, $soluong, $TongTien);
+            $result = $this->model->TaoDonHangTTKH($MaSP,$MaKH,$Email, $soluong, $TongTien,$date);
             $results[] = $result;
             $kq1 = $this->model->CapNhatSPVuaDat($MaSP);
             $kqSP[]=$kq1;

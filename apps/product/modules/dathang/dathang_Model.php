@@ -12,10 +12,10 @@ class dathang_Model extends Model {
         return $this->qSelect($query);
     }
 
-    public function TaoDonHangTTKH($MaSP,$MaKH,$Email,$soluong,$TongTien){       
-        $query = "insert into ql_banhang.HOADON(MaSP,MaKH,Email,SoLuong,TongTien) 
-        values ('".$MaSP."','".$MaKH."','".$Email."',".$soluong.",".$TongTien.")";
-        //var_dump($query);die();
+    public function TaoDonHangTTKH($MaSP,$MaKH,$Email,$soluong,$TongTien,$date){       
+        $query = "insert into ql_banhang.HOADON(MaSP,MaKH,Email,SoLuong,TongTien,Ngaydat) 
+        values ('".$MaSP."','".$MaKH."','".$Email."',".$soluong.",".$TongTien.",'".$date."')";
+        // var_dump($query);die();
         return $this->qInsert($query);
     }
     public function CapNhatSPVuaDat($MaSP){    

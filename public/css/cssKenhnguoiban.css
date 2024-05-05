@@ -115,7 +115,7 @@
 .bangContent tr #tensp{width: 500px;text-align: center;}
 .bangContent tr #masp{width: 150px;text-align: center;}
 .bangContent tr #img{width: 300px;text-align: center;}
-
+/**/
 .bangContent .rowContent{
     margin: 0;
     border-bottom: 1px solid rgb(214, 214, 214) ;
@@ -140,4 +140,35 @@
 .bangContent tr td button{
     border: none;
     background: transparent;
+}
+/**/
+.bangContentt{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #ffff;
+}
+.bangContentt tr{
+    border: 1px solid #00000054;
+}
+.bangContentt tr td{
+    height: 50px;padding: 10px;border-right: 1px solid rgb(214, 214, 214);
+}
+.order{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.bangContentt tr #donhang{width:30%;text-align: center;}
+.bangContentt tr td img{width: 100%;height: 100%;}
+.bangContentt table{width: 100%;}
+.bangContentt tr th{width: auto;height: 50px;padding: 10px;text-align: center;}
+.bangContentt .rowContent{
+    margin: 0;
+    border-bottom: 1px solid rgb(214, 214, 214) ;
+    height: 80px;
+    padding: 15px;
+}
+
+.bangContentt .rowContent .lblinput input{
+    width: 100%;
 }

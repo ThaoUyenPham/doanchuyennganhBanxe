@@ -182,9 +182,9 @@
                               
             },
             success: function (data, status, xhr) {
-                alert("Bạn đã đặt hàng thành công");
-                // console.log(data);
-                // console.log(status);
+                // alert("Bạn đã đặt hàng thành công");
+                console.log(data);
+                console.log(status);
 
             }
         });

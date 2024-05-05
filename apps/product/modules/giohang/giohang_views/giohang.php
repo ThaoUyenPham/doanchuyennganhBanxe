@@ -69,8 +69,6 @@
                                             
                                                 
                                                 <input type="hidden" id="MaG" val="<?php echo $pro['MaG'];?>" value="<?php echo $pro['MaG']; ?>">
-                                                
-
                                                 <td class="product_remove"><a id="btn_delete" onclick="deleteSP('<?php echo $pro['MaG'];?>')" ><i class="fa fa-trash-o" style="cursor:hand;"></i></a></td>
                                                 <td class="product_id" val="<?php echo $pro['MaG']; ?>"><?php echo $pro['MaG']?></td>
                                                 <td class="product_thumb"><a href="#"><img src="<?php echo SITE_ROOT_IMG.$pro['Hinh']?>" alt=""></a></td>

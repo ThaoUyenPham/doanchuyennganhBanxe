@@ -13,6 +13,11 @@ class kenhnguoiban_Model extends Model {
         $query = "select * from ql_banhang.danhmuc"; 
         return $this->qSelect($query);
     }
+    public function getDonHang(){
+        $query = "select sp.img,sp.TenSP,hd.MaKH,Email,SoLuong,TongTien,Ngaydat,kh.Sodienthoai,kh.tenkh,kh.Diachi from ql_banhang.hoadon as hd,ql_banhang.sanpham as sp,ql_banhang.khachhang as kh 
+        where hd.MaSP=sp.MaSP and kh.MaKH=hd.MaKH GROUP BY Email"; 
+        return $this->qSelect($query);
+    }
     public function getDanhSachSanPham($item_per_page,$offet){
             $query = "select MaSP,img,SLSP,TenSP,GIA,MADM from ql_banhang.sanpham
             order by MaSP asc limit ".$item_per_page." offset ".$offet."";

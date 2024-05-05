@@ -20,6 +20,9 @@ class kenhnguoiban_Controller extends Controller {
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Giá trị mặc định là 1 nếu không có tham số page
             $offet = ($current_page - 1) * $item_per_page;
             $viewData['danhmuc'] =  $this->model->getDanhMuc();  
+            
+            $viewData['order']=$this->model->getDonHang();
+
             if($item_per_page!=0){
                 $viewData['products'] = $this->model->getDanhSachSanPham($item_per_page, $offet);
                 $this->getView()->render('kenhnguoiban', $viewData);
@@ -35,6 +38,7 @@ class kenhnguoiban_Controller extends Controller {
             $tukhoa=$_GET['tukhoa']; 
             $viewData['gender'] = null;
             $viewData['products'] = $this->model->getDanhSachSanPhamTheoTuKhoa($tukhoa);
+            
             //var_dump($viewData);die();
             $this->getView()->render('kenhnguoiban', $viewData);           
         }
