@@ -202,12 +202,12 @@
 .footer{
     margin-top: 2em;
     width: 100%;
-    height: auto;
+    height: 40%;
     position:relative;
 }
 .footer_container{
     width: auto;
-    height: 50%;
+    height: 100%;
     padding-left: 10%;
     padding-right: 10%;
     box-shadow: 0px 8px 16px 0px rgba(2,2,2,0.2);

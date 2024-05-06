@@ -13,7 +13,7 @@
         'public/libs/font-awesome-4.7.0/css/font-awesome.min' => ['cache' => true],
         'public/libs/bootstrap-3.3.7-dist/css/bootstrap.min' => ['cache' => true],
         'public/css/cssHeaderFooter' => ['cache' => true],
-        'public/css/cssGioHang' => ['cache' => true]
+        'public/css/cssDonHang' => ['cache' => true]
     ]);
     echo $context->getEmbedStylesheet();
 
@@ -31,49 +31,54 @@
     <div class="main">
         <div class="content_main">
             <div class="shopping_cart_area">
-            <h4>THÔNG TIN GIỎ HÀNG</h4>
-            <form action="" method="post"> 
+            <h4 style="text-align: center">THÔNG TIN ĐƠN HÀNG</h4>
+                <form action="" method="post"> 
                     <div class="row">
-                        <div class="col-12">
-                            <div class="table_desc">
-                                <div class="cart_page table-responsive">
-                                    <table style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th class="headerTable">Hành động</th>
-                                                <th class="headerTable">Mã</th>
-                                                <th class="headerTable">Hình ảnh</th>
-                                                <th class="headerTable">Sản phẩm</th>
-                                                <th class="headerTable">Giá</th>
-                                                <th class="headerTable">Số lượng</th>
-                                                <th class="headerTable">Tổng cộng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php if(count($products)>0){  ?>                                       
-                                            <tr>
-                                                <td class="product_remove"><a id="btn_delete"><i class="fa fa-trash-o" style="cursor:hand;"></i></a></td>
-                                                <td class="product_id"></td>
-                                                <td class="product_thumb"><a href="#"><img src="" alt=""></a></td>
-                                                <td class="product_name"><a href="#"></a></td>
-                                                <td class="product-price" id="price" ></td>
-                                                
-                                                <td class="product_quantity">
-                                                    <input class="product_sl" min="0" max="100" id="soluong" 
-                                                   value="" 
-                                                    type="number" onChange="changeQuantity()">
-                                                </td>
-                                                <td class="product_total" id="total"></td>                                             
-                                            </tr>
-                                        <?php }?>
-                                        </tbody>
-                                    </table>   
-                                </div>  
-                                <div class="checkout_btn">
-                                    <a id="btn_update" id="updateSP" onclick="updateSP()" style="cursor: hand;">Cập nhật</a>
-                                    <!-- <button id="updateSP">Cap nhat</button> -->
-                                </div>      
+                        <div class="table-desc">
+                            <div class="dateOrders">
+                            <?php
+                                if(count($khachhang)>0){ 
+                                    foreach($khachhang as $kh){                                            
+                            ?>
+                                <p>Mã đơn hàng:<?php echo $kh['MaHD']?></p>
+                                <p>Tên người nhận: <?php echo $kh['tenkh']?></p>
+                                <p>Địa chỉ: <?php echo $kh['Diachi']?></p>
+                                <p>Số điện thoại: <?php echo $kh['Sodienthoai']?></p>
+                                <p>Email: <?php echo $kh['Email']?></p>
+                                <p>Ngày đặt hàng: <?php echo $kh['Ngaydat']?></p>
+                            <?php }}?>
                             </div>
+                            <div class="cart_page table-responsive">
+                                <table style="width:100%">
+                                    <thead>
+                                        <tr style="height: 30px;background: #dfd9d9;">
+                                            <th class="headerTable" style="width:40em;">Hình</th>
+                                            <th class="headerTable">Số lượng</th>
+                                            <th class="headerTable">Giá</th>
+                                        </tr>
+                                    </thead>
+                                <tbody>
+                                    <?php
+                                        if(count($products)>0){ 
+                                            foreach($products as $pro){                                            
+                                        ?>
+                                    <tr>
+                                        <td><img src="<?php echo SITE_ROOT_IMG.$pro['img']?>" alt="">
+                                            <span><p><?php echo $pro['TenSP']?></p></span>
+                                        </td>
+                                        <td><?php echo $pro['SoLuong']?></td>
+                                        <td><?php echo number_format ($pro['GIA'],0)?></td>       
+                                    </tr>
+                                    <?php }}?>
+                                    <tr>
+                                        <td style="font-weight: bold;">Tổng tiền</td>
+                                        <td></td>
+                                        <td><?php echo number_format ($pro['TongTien'],0)?></td>
+                                    </tr>
+                                    
+                                </tbody>
+                                </table>   
+                            </div> 
                         </div>
                     </div>
                 </form> 

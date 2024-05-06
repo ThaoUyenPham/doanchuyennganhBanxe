@@ -16,7 +16,8 @@ class donhang_Controller extends Controller {
     public function index() {
         $makh = get_request_var('makh');
         if(!empty($makh)){
-            $viewData['products'] = $this->model->getXemDH($makh);          
+            $viewData['products'] = $this->model->getXemDH($makh);  
+            $viewData['khachhang'] = $this->model->getXemDHKH($makh);          
             $this->getView()->render('donhang', $viewData);
             
             //khai bao khi goi ham index thi se ra file giao dien nao len      

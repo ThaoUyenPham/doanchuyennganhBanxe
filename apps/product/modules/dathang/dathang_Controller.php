@@ -65,8 +65,9 @@ class dathang_Controller extends Controller {
             $kqSP[]=$kq1;
            
         }
-        return ['results' => $results, 'kqSP' => $kqSP];
         
+        return ['results' => $results, 'kqSP' => $kqSP];
+        echo "Đã đặt hàng thành công";
         //return $results; // Trả về mảng kết quả
     }
     
