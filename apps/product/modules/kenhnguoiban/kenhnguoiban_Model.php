@@ -23,7 +23,15 @@ class kenhnguoiban_Model extends Model {
             order by MaSP asc limit ".$item_per_page." offset ".$offet."";
         return $this->qSelect($query);
     }
-
+    public function getThongKe(){
+        $query = "select sp.MaSP, sp.TenSP, SUM(hd.SoLuong) as total_quantity
+        FROM ql_banhang.sanpham as sp
+        JOIN ql_banhang.hoadon as hd ON sp.MaSP = hd.MaSP
+        GROUP BY sp.MaSP, sp.TenSP
+        ORDER BY total_quantity DESC
+        LIMIT 10"; 
+        return $this->qSelect($query);
+    }
     public function getxoaSanpham($MaSP){
         $query = "delete from ql_banhang.sanpham where MaSP = '".$MaSP."'";
        // var_dump($query);die();

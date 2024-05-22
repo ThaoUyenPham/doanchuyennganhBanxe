@@ -20,7 +20,7 @@ class kenhnguoiban_Controller extends Controller {
             $current_page = isset($_GET['page']) ? $_GET['page'] : 1; // Giá trị mặc định là 1 nếu không có tham số page
             $offet = ($current_page - 1) * $item_per_page;
             $viewData['danhmuc'] =  $this->model->getDanhMuc();  
-            
+            $viewData['thongke']=$this->model->getThongKe();
             $viewData['order']=$this->model->getDonHang();
 
             if($item_per_page!=0){

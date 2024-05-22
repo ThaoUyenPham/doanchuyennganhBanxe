@@ -252,13 +252,9 @@ $('#Order').click(function(){
                    
                },  // data to submit
                success: function (data, status, xhr) {
-                if(data==1){                    
-                    window.open("<?php echo SITE_ROOT ?>product/dathang","_self"); 
-                   }
-                else{
                     alert("Vui lòng đăng nhập trước khi thanh toán");   
                     window.open("<?php echo SITE_ROOT ?>product/dangnhap","_self"); 
-                   }  
+                    
                }
    
            });

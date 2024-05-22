@@ -38,6 +38,7 @@
                                     <li><a class="tablinks" onclick="OpenTab(event, 'XemSanpham')">Tất cả sản phẩm</a></li>
                                     <li><a class="tablinks" onclick="OpenTab(event, 'QuanlySanpham')">Thêm sản phẩm</a></li>
                                     <li><a class="tablinks" onclick="OpenTab(event, 'QuanlyDonhang')">Quản lý đơn hàng</a></li>
+                                    <li><a class="tablinks" onclick="OpenTab(event, 'ThongKeSP')">Thống kê sản phẩm bán chạy</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -149,7 +150,7 @@
                             </div>
                         </div>
                         <div id="QuanlyDonhang" class="TabContentQL">
-                        <div class="bangContentt">
+                            <div class="bangContentt">
                             <table>                                  
                                 <tr>
                                     <th id="donhang">Người nhận</th>
@@ -171,6 +172,29 @@
                                     <?php }}?>   
                                 </table>
                             </div>
+                        </div>
+                        <div id="ThongKeSP" class="TabContentQL">
+                            <div class="bangContentt">
+                                    <h3 style="margin-top:10px;">THỐNG KÊ SẢN PHẨM BÁN CHẠY</h3>
+                                    <table>                                  
+                                        <tr style="background: #c3cbd1;">
+                                            <th>Mã Sản Phẩm</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Tổng Số Lượng Khách Đã Đặt</th>                  
+                                        </tr>  
+                                        <?php if(count($thongke)>0){ 
+                                            foreach($thongke as $thongke){            
+                                        ?>
+                                        <tr>
+                                            
+                                            <td><?php echo $thongke['MaSP']?></td>
+                                            <td><?php echo $thongke['TenSP']?></td>
+                                            <td><?php echo $thongke['total_quantity']?></td>
+                                            
+                                        </tr>   
+                                        <?php }}?>   
+                                    </table>
+                                </div>
                         </div>
                      </div>       
                 </div>
